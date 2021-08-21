@@ -81,6 +81,7 @@ listOf(
         dependsOn(tasks.generateGitProperties, tasks.classes)
         doFirst {
             liquibase.runList = "diffLog"
+            @Suppress("UNCHECKED_CAST")
             val args = liquibase.activities.named("diffLog").get().arguments!! as MutableMap<String, String?>
             args["changeLogFile"]?.let(Paths::get)?.let(Files::deleteIfExists)
             if ("changeSetAuthor" !in args) {

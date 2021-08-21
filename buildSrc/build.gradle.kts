@@ -15,7 +15,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
     implementation("org.jetbrains.kotlin:kotlin-noarg:$kotlinVersion")
 
-    val springBootVersion = "2.5.3"
+    val springBootVersion = "2.5.4"
     implementation("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
     val springDependencyManagementVersion = "1.0.11.RELEASE"
     implementation("io.spring.gradle:dependency-management-plugin:$springDependencyManagementVersion")
