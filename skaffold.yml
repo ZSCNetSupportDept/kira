@@ -1,0 +1,11 @@
+apiVersion: skaffold/v2beta21
+kind: Config
+metadata:
+  name: kira
+build:
+  tagPolicy:
+    gitCommit: { }
+  artifacts:
+    - image: kira
+      jib:
+        project: server
