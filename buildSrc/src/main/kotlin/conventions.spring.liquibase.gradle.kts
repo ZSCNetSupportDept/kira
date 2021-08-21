@@ -26,7 +26,7 @@ configurations {
 
 // Please note that users can customize the following default settings
 // by creating a liquibase.properties file at $projectDir.
-// Don not change or commit your personal settings into the repository.
+// Do not change or commit your personal settings into the repository.
 liquibase {
     activities {
         val changelogDir = "${sourceSets.main.get().resources.sourceDirectories.asPath}/config/liquibase/changelog"
