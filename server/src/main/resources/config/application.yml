@@ -7,7 +7,6 @@ spring:
       write-dates-as-timestamps: false
   datasource:
     hikari:
-      poolName: Hikari
       auto-commit: false
       data-source-properties:
         cachePrepStmts: true
