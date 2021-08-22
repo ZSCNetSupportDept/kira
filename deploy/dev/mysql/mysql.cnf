@@ -1,0 +1,26 @@
+[mysqld]
+
+# It's 2021, people just can't live without emojis
+character-set-server = utf8mb4
+character_set_server = utf8mb4
+# utf8mb4_general_ci vs utf8mb4_unicode_ci
+# https://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
+collation-server = utf8mb4_unicode_ci
+collation_server = utf8mb4_unicode_ci
+
+# Force case insensitive table names for cross-platform compatibility
+# https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_lower_case_table_names
+lower_case_table_names = 1
+
+# Forbid nonstandard behaviors on TIMESTAMP data type
+# https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_explicit_defaults_for_timestamp
+explicit_defaults_for_timestamp = on
+
+# This is the most important setting to allow your database perform well.
+# It is recommended to assign up to 80% of your memory budget to the buffer pool.
+# https://mariadb.com/kb/en/innodb-system-variables/#innodb_buffer_pool_size
+# https://mariadb.com/kb/en/setting-innodb-buffer-pool-size-dynamically/
+innodb_buffer_pool_size = 2GB
+
+# https://github.com/docker-library/mysql/issues/541
+secure-file-priv = NULL
