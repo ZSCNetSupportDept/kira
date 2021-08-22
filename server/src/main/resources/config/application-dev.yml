@@ -1,0 +1,17 @@
+spring:
+  jackson:
+    serialization:
+      indent-output: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost/kira?useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password:
+  jpa:
+    show-sql: true
+
+application:
+  base-url: http://localhost:8080
+  security:
+    remember-me:
+      key: 94304cc98f5747e0991d972f8bbdb60050b7ab1af0ae638affb861ae0debcf2a

@@ -1,0 +1,66 @@
+spring:
+  profiles:
+    default: dev
+  jackson:
+    serialization:
+      write-durations-as-timestamps: false
+      write-dates-as-timestamps: false
+  datasource:
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+  liquibase:
+    change-log: classpath:/config/liquibase/master.xml
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+      use-new-id-generator-mappings: true
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    properties:
+      hibernate.jdbc.time_zone: UTC
+      hibernate.connection.provider_disables_autocommit: true
+  servlet:
+    multipart:
+      max-file-size: 64MB
+      max-request-size: 64MB
+  web:
+    locale-resolver: fixed
+    locale: en_US
+    resources:
+      add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  mail:
+    default-encoding: UTF-8
+
+springdoc:
+  api-docs:
+    groups:
+      enabled: true
+    path: /api/api-docs
+  swagger-ui:
+    path: /api/swagger-ui.html
+    csrf:
+      enabled: true
+    disable-swagger-default-url: true
+    tags-sorter: alpha
+    operations-sorter: alpha
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  trace:
+    http:
+      include: request-headers, response-headers, cookie-headers, authorization-header, principal, remote-address, session-id, time-taken
