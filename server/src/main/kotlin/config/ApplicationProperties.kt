@@ -17,7 +17,8 @@ data class ApplicationProperties(
         require(!baseUrl.endsWith('/')) { "baseUrl must not end with trailing slash." }
     }
 
-    data class Security(val rememberMe: RememberMe) {
+    data class Security(val rememberMe: RememberMe, val headers: Headers) {
         data class RememberMe(val key: String)
+        data class Headers(val contentSecurityPolicy: String, val permissionsPolicy: String)
     }
 }

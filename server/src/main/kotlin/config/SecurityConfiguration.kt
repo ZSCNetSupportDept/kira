@@ -21,6 +21,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository
+import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport
 import javax.servlet.http.HttpServletResponse.SC_OK
 import javax.servlet.http.HttpServletResponse.SC_UNAUTHORIZED
@@ -70,6 +71,21 @@ class SecurityConfiguration(
             logout {
                 logoutUrl = "/api/auth/logout"
                 logoutSuccessHandler = LogoutSuccessHandler { _, response, _ -> response.status = SC_OK }
+            }
+            headers {
+                httpStrictTransportSecurity {}
+                contentSecurityPolicy {
+                    policyDirectives = applicationProperties.security.headers.contentSecurityPolicy
+                }
+                referrerPolicy {
+                    policy = STRICT_ORIGIN_WHEN_CROSS_ORIGIN
+                }
+                permissionsPolicy {
+                    policy = applicationProperties.security.headers.permissionsPolicy
+                }
+                frameOptions {
+                    deny = true
+                }
             }
             authorizeRequests {
                 authorize(EndpointRequest.toAnyEndpoint(), hasRole("SYS_ADMIN"))

@@ -63,3 +63,9 @@ management:
   trace:
     http:
       include: request-headers, response-headers, cookie-headers, authorization-header, principal, remote-address, session-id, time-taken
+
+application:
+  security:
+    headers:
+      content-security-policy: default-src 'self'
+      permissions-policy: fullscreen 'self'; geolocation 'none'; midi 'none'; sync-xhr 'none'; microphone 'none'; camera 'none'; magnetometer 'none'; gyroscope 'none'; payment 'none'
